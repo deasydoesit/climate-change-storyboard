@@ -38,35 +38,39 @@ class Choropleth extends Component {
         color,
         us: files[0],
       }, 
-        () => this.renderMap()
+        () => {
+          this.renderMap();
+          this.startMap();
+        }
       );
 
     })
   }
 
-  componentDidUpdate() {
-    const { color, years, index } = this.state;
+  resetMap = () => {
+    this.setState({ 
+      index: 0, 
+      shouldMapUpdate: true 
+    }, () => {
+      clearInterval(this.timer);
+     // this.startMap();
+    });
 
-    if (this.state.shouldMapUpdate) {
-
-      setTimeout(() => {
-        let shouldMapUpdate = true;
-        const yearTempData = new Map(this.state.totalTempData.map(d => [d['County Code'], d[years[index]]]));
-        if (years[index] === 2011) shouldMapUpdate = false;
-
-        this.setState({
-          yearTempData,
-          shouldMapUpdate,
-          index: index + 1,
-        }, 
-          () => d3.selectAll('path.county').attr("fill", d => color(yearTempData.get(d.id)))
-        );
-      }, 1000);
-
-    }
   }
 
-  startMapCycle = () => this.setState({ index: 0, shouldMapUpdate: true });
+  startMap = () => {
+    this.timer = setInterval(() => {
+      const { color, years, index, totalTempData } = this.state;
+      const yearTempData = new Map(totalTempData.map(d => [d['County Code'], d[years[index]]]));
+      this.setState({
+        yearTempData,
+        shouldMapUpdate: years[index] === 2011,
+        index: index + 1,
+      }, 
+        () => d3.selectAll('path.county').attr("fill", d => color(yearTempData.get(d.id)))
+      );
+    }, 1000);
+  }
 
   renderMap = () => {
     const { color, format, yearTempData, us } = this.state;
@@ -118,7 +122,7 @@ class Choropleth extends Component {
       .append("title")
         .text(d => {
           const countyTemp = yearTempData.get(d.id);
-          return isNaN(countyTemp) ? "Missing value" : format(countyTemp);
+          return isNaN(countyTemp) ? "Missing value" : `${format(countyTemp)}f`;
           }
         );
 
@@ -135,7 +139,7 @@ class Choropleth extends Component {
       <div>
         <svg ref='anchor' width={960} height={600} />
         <div 
-          onClick={() => this.startMapCycle()}
+          onClick={() => this.resetMap()}
         >
           <FaRedo />
         </div>
