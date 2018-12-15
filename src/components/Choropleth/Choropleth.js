@@ -15,7 +15,8 @@ class Choropleth extends Component {
     color: null,
     format: d3.format(''),
     index: 0,
-    shouldMapUpdate: true,
+    isOn: true,
+    showButtons: true,
     totalTempData: null,
     us: null,
     yearTempData: null,
@@ -51,7 +52,8 @@ class Choropleth extends Component {
     console.log('resetMap');
     this.setState({ 
       index: 0, 
-      shouldMapUpdate: true 
+      isOn: true,
+      showButtons: true,
     }, () => {
       clearInterval(this.timer);
       this.startMap();
@@ -61,21 +63,33 @@ class Choropleth extends Component {
   pauseMap = () => {
     console.log('pauseMap');
     this.setState({ 
-      shouldMapUpdate: true 
+      isOn: false 
+    }, () => {
+      clearInterval(this.timer);
+    });
+  }
+
+  endMap = () => {
+    console.log('endMap');
+    this.setState({ 
+      isOn: false,
+      showButtons: false,
     }, () => {
       clearInterval(this.timer);
     });
   }
 
   startMap = () => {
-    console.log('startMap')
+    console.log('startMap');
+    this.setState({isOn: this.state.years[this.state.index] !== 2011});
+
     this.timer = setInterval(() => {
       const { color, years, index, totalTempData } = this.state;
       console.log(index);
+      if (years[index] === 2011) this.endMap();
       const yearTempData = new Map(totalTempData.map(d => [d['County Code'], d[years[index]]]));
       this.setState({
         yearTempData,
-        shouldMapUpdate: years[index] === 2011,
         index: index + 1,
       }, 
         () => d3.selectAll('path.county').attr("fill", d => color(yearTempData.get(d.id)))
@@ -146,24 +160,31 @@ class Choropleth extends Component {
   }
 
   render() { 
+    const { isOn, showButtons } = this.state;
     return (
       <div>
         <svg ref='anchor' width={960} height={600} />
-        <div 
-          onClick={() => this.pauseMap()}
-        >
-          <FaPause className={'btn-control'}/>
-        </div>
-        <div 
-          onClick={() => this.startMap()}
-        >
-          <FaPlay className={'btn-control'}/>
-        </div>
+        {showButtons && isOn && 
+          <div 
+            onClick={() => this.pauseMap()}
+          >
+            <FaPause className={'btn-control'}/>
+          </div>
+        }
+        {showButtons && !isOn && 
+          <div 
+            onClick={() => this.startMap()}
+          >
+            <FaPlay className={'btn-control'}/>
+          </div>
+        }
+        {!showButtons &&
         <div 
           onClick={() => this.resetMap()}
         >
           <FaRedo className={'btn-control'}/>
         </div>
+        }
       </div>
     );
   }
