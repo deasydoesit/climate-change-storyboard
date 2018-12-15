@@ -1,61 +1,73 @@
 // External imports
 import React, { Component } from 'react';
-import * as topojson from 'topojson';
 import * as d3 from 'd3';
+import { FaRedo } from 'react-icons/fa';
+import * as topojson from 'topojson';
 
 // Internal imports
 import tempData from '../../data/county-temp-1979-2011.csv';
+import yearData from '../../data/county-temp-years-1979-2011.json';
+
 import './Choropleth.css';
 
 class Choropleth extends Component {
   state = {
-    rawData: null,
-    data: null,
-    us: null,
     color: null,
     format: d3.format(''),
-    shouldUpdate: true,
+    index: 0,
+    shouldMapUpdate: true,
+    totalTempData: null,
+    us: null,
+    yearTempData: null,
+    years: yearData.years,
   }
 
   componentDidMount() {
     Promise.all([
       d3.json("https://unpkg.com/us-atlas@1/us/10m.json"),
       d3.csv(tempData),
-    ]).then((files) => {
-      const rawData = files[1];
-      const data = new Map(files[1].map(d => [d['County Code'], d[1979]]));
+    ])
+    .then((files) => {
+      const totalTempData = files[1];
+      const yearTempData = new Map(files[1].map(d => [d['County Code'], d[1979]]));
       const color = d3.scaleQuantize().domain([36, 90]).range(d3.schemeReds[9]);
 
       this.setState({
-        data,
-        rawData,
+        yearTempData,
+        totalTempData,
         color,
         us: files[0],
-      }, () => this.renderMap());
+      }, 
+        () => this.renderMap()
+      );
+
     })
   }
 
   componentDidUpdate() {
-    const { color, format } = this.state;
-    if (this.state.shouldUpdate) {
+    const { color, years, index } = this.state;
+
+    if (this.state.shouldMapUpdate) {
+
       setTimeout(() => {
-        const data = new Map(this.state.rawData.map(d => [d['County Code'], d[1999]]));
+        let shouldMapUpdate = true;
+        const yearTempData = new Map(this.state.totalTempData.map(d => [d['County Code'], d[years[index]]]));
+        if (years[index] === 2011) shouldMapUpdate = false;
+
         this.setState({
-          data,
-          shouldUpdate: false,
-        }, () => {
-          d3.selectAll('path.county')
-          .attr("fill", d => color(data.get(d.id)))
-          .append("title")
-            .text(d => format(data.get(d.id)));
-        });
-      }, 1000)
+          yearTempData,
+          shouldMapUpdate,
+          index: index + 1,
+        }, 
+          () => d3.selectAll('path.county').attr("fill", d => color(yearTempData.get(d.id)))
+        );
+      }, 1000);
+
     }
   }
 
   renderMap() {
-    console.log(this.state)
-    const { color, format, data, us } = this.state;
+    const { color, format, yearTempData, us } = this.state;
 
     const path = d3.geoPath();
 
@@ -63,9 +75,7 @@ class Choropleth extends Component {
       .domain(d3.extent(color.domain()))
       .rangeRound([600, 860]);
 
-    const svg = d3.select(this.refs.anchor)
-      .style("width", "100%")
-      .style("height", "auto");
+    const svg = d3.select(this.refs.anchor);
 
     const g = svg.append("g")
       .attr("transform", "translate(0,40)");
@@ -85,7 +95,7 @@ class Choropleth extends Component {
       .attr("fill", "#000")
       .attr("text-anchor", "start")
       .attr("font-weight", "bold")
-      .text(data.title);
+      .text(yearTempData.title);
 
     g.call(d3.axisBottom(x)
         .tickSize(13)
@@ -101,10 +111,14 @@ class Choropleth extends Component {
       .data(topojson.feature(us, us.objects.counties).features)
       .enter().append("path")
         .attr("class", "county")
-        .attr("fill", d => color(data.get(d.id)))
+        .attr("fill", d => color(yearTempData.get(d.id)))
         .attr("d", path)
       .append("title")
-        .text(d => format(data.get(d.id)));
+        .text(d => {
+          const countyTemp = yearTempData.get(d.id);
+          return isNaN(countyTemp) ? "Missing value" : format(countyTemp);
+          }
+          );
 
     svg.append("path")
       .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
@@ -115,14 +129,15 @@ class Choropleth extends Component {
   }
 
   render() { 
-    const { us } = this.state;
-
-    if (!us) {
-      return null;
-    }
-
     return (
-      <svg ref='anchor' width={960} height={600} />
+      <div>
+        <svg ref='anchor' width={960} height={600} />
+        <div 
+
+        >
+          <FaRedo />
+        </div>
+      </div>
     );
   }
 }
