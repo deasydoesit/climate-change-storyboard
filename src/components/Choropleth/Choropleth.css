@@ -24,8 +24,3 @@ path {
   stroke: #fff;
   stroke-width: 1.5px;
 }
-
-.btn-control:hover {
-  cursor: pointer;
-  transform: scale(1.1, 1.1);
-}

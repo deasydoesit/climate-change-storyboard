@@ -1,10 +1,10 @@
 // External imports
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import { FaPause, FaPlay, FaRedo } from 'react-icons/fa';
 import * as topojson from 'topojson';
 
 // Internal imports
+import ControlButtons from './ControlButtons';
 import tempData from '../../data/county-temp-1979-2011.csv';
 import yearData from '../../data/county-temp-years-1979-2011.json';
 
@@ -44,12 +44,10 @@ class Choropleth extends Component {
           this.startMap();
         }
       );
-
     })
   }
 
   resetMap = () => {
-    console.log('resetMap');
     this.setState({ 
       index: 0, 
       isOn: true,
@@ -61,7 +59,6 @@ class Choropleth extends Component {
   }
 
   pauseMap = () => {
-    console.log('pauseMap');
     this.setState({ 
       isOn: false 
     }, () => {
@@ -70,27 +67,25 @@ class Choropleth extends Component {
   }
 
   endMap = () => {
-    console.log('endMap');
+    clearInterval(this.timer);
     this.setState({ 
       isOn: false,
       showButtons: false,
-    }, () => {
-      clearInterval(this.timer);
+      index: 32,
     });
   }
 
   startMap = () => {
-    console.log('startMap');
     this.setState({isOn: this.state.years[this.state.index] !== 2011});
 
     this.timer = setInterval(() => {
       const { color, years, index, totalTempData } = this.state;
-      console.log(index);
-      if (years[index] === 2011) this.endMap();
+      const isLastYear = years[index] === 2011;
+      if (isLastYear) this.endMap()
       const yearTempData = new Map(totalTempData.map(d => [d['County Code'], d[years[index]]]));
       this.setState({
         yearTempData,
-        index: index + 1,
+        index: isLastYear ? 32 : index + 1,
       }, 
         () => d3.selectAll('path.county').attr("fill", d => color(yearTempData.get(d.id)))
       );
@@ -160,31 +155,22 @@ class Choropleth extends Component {
   }
 
   render() { 
-    const { isOn, showButtons } = this.state;
+    const { isOn, showButtons, years, index } = this.state;
+    console.log(index, years[index])
+
     return (
       <div>
-        <svg ref='anchor' width={960} height={600} />
-        {showButtons && isOn && 
-          <div 
-            onClick={() => this.pauseMap()}
-          >
-            <FaPause className={'btn-control'}/>
-          </div>
-        }
-        {showButtons && !isOn && 
-          <div 
-            onClick={() => this.startMap()}
-          >
-            <FaPlay className={'btn-control'}/>
-          </div>
-        }
-        {!showButtons &&
-        <div 
-          onClick={() => this.resetMap()}
-        >
-          <FaRedo className={'btn-control'}/>
+        <div>
+          {years[index]}
         </div>
-        }
+        <svg ref='anchor' width={960} height={600} />
+        <ControlButtons 
+          isOn={isOn}
+          showButtons={showButtons}
+          pauseMap={this.pauseMap}
+          startMap={this.startMap}
+          resetMap={this.resetMap}
+        />
       </div>
     );
   }
