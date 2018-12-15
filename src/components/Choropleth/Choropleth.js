@@ -66,7 +66,9 @@ class Choropleth extends Component {
     }
   }
 
-  renderMap() {
+  startMapCycle = () => this.setState({ index: 0, shouldMapUpdate: true });
+
+  renderMap = () => {
     const { color, format, yearTempData, us } = this.state;
 
     const path = d3.geoPath();
@@ -118,7 +120,7 @@ class Choropleth extends Component {
           const countyTemp = yearTempData.get(d.id);
           return isNaN(countyTemp) ? "Missing value" : format(countyTemp);
           }
-          );
+        );
 
     svg.append("path")
       .datum(topojson.mesh(us, us.objects.states, (a, b) => a !== b))
@@ -133,7 +135,7 @@ class Choropleth extends Component {
       <div>
         <svg ref='anchor' width={960} height={600} />
         <div 
-
+          onClick={() => this.startMapCycle()}
         >
           <FaRedo />
         </div>
