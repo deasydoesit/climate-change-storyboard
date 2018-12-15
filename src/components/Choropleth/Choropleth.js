@@ -1,7 +1,7 @@
 // External imports
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import { FaRedo } from 'react-icons/fa';
+import { FaPause, FaPlay, FaRedo } from 'react-icons/fa';
 import * as topojson from 'topojson';
 
 // Internal imports
@@ -48,19 +48,30 @@ class Choropleth extends Component {
   }
 
   resetMap = () => {
+    console.log('resetMap');
     this.setState({ 
       index: 0, 
       shouldMapUpdate: true 
     }, () => {
       clearInterval(this.timer);
-     // this.startMap();
+      this.startMap();
     });
+  }
 
+  pauseMap = () => {
+    console.log('pauseMap');
+    this.setState({ 
+      shouldMapUpdate: true 
+    }, () => {
+      clearInterval(this.timer);
+    });
   }
 
   startMap = () => {
+    console.log('startMap')
     this.timer = setInterval(() => {
       const { color, years, index, totalTempData } = this.state;
+      console.log(index);
       const yearTempData = new Map(totalTempData.map(d => [d['County Code'], d[years[index]]]));
       this.setState({
         yearTempData,
@@ -139,9 +150,19 @@ class Choropleth extends Component {
       <div>
         <svg ref='anchor' width={960} height={600} />
         <div 
+          onClick={() => this.pauseMap()}
+        >
+          <FaPause className={'btn-control'}/>
+        </div>
+        <div 
+          onClick={() => this.startMap()}
+        >
+          <FaPlay className={'btn-control'}/>
+        </div>
+        <div 
           onClick={() => this.resetMap()}
         >
-          <FaRedo />
+          <FaRedo className={'btn-control'}/>
         </div>
       </div>
     );
