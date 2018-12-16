@@ -5,8 +5,8 @@ import * as topojson from 'topojson';
 
 // Internal imports
 import ControlButtons from './ControlButtons';
-import tempData from '../../data/county-temp-1979-2011.csv';
-import yearData from '../../data/county-temp-years-1979-2011.json';
+import tempData from '../../data/Choropleth/county-temp-1979-2011.csv';
+import yearData from '../../data/Choropleth/county-temp-years-1979-2011.json';
 
 import './Choropleth.css';
 
@@ -82,7 +82,7 @@ class Choropleth extends Component {
     this.setState({isOn: this.state.years[this.state.index] !== 2011});
 
     this.timer = setInterval(() => {
-      const { color, years, index, format, totalTempData } = this.state;
+      const { color, counties, years, index, totalTempData } = this.state;
       const isLastYear = years[index] === 2011;
       if (isLastYear) this.endMap()
       const yearTempData = new Map(totalTempData.map(d => [d['County Code'], d[years[index]]]));
@@ -95,8 +95,9 @@ class Choropleth extends Component {
             .attr("fill", d => color(yearTempData.get(d.id)))
             .select("title")
               .text(d =>  {
+                const county = counties.get(d.id);
                 const countyTemp = yearTempData.get(d.id);
-                return isNaN(countyTemp) ? "Missing value" : `${countyTemp}f`; 
+                return isNaN(countyTemp) ? "Missing value" : `${county} - ${countyTemp}F`; 
               });
         }  
       );
@@ -104,7 +105,7 @@ class Choropleth extends Component {
   }
 
   renderMap = () => {
-    const { color, format, yearTempData, us } = this.state;
+    const { color, counties, format, yearTempData, us } = this.state;
 
     const path = d3.geoPath();
 
@@ -152,8 +153,9 @@ class Choropleth extends Component {
         .attr("d", path)
       .append("title")
         .text(d => {
+          const county = counties.get(d.id);
           const countyTemp = yearTempData.get(d.id);
-          return isNaN(countyTemp) ? "Missing value" : `${countyTemp}f`;
+          return isNaN(countyTemp) ? "Missing value" : `${county} - ${countyTemp}F`; 
           }
         );
 
@@ -167,7 +169,6 @@ class Choropleth extends Component {
 
   render() { 
     const { isOn, showButtons, years, index } = this.state;
-    console.log(index, years[index])
 
     return (
       <div>

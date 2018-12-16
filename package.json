@@ -12,6 +12,7 @@
     "react-icons": "^3.2.2",
     "react-plotly.js": "^2.2.0",
     "react-scripts": "2.1.1",
+    "react-vis": "^1.11.5",
     "topojson": "^3.0.2"
   },
   "scripts": {
