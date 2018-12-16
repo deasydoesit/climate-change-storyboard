@@ -13,6 +13,7 @@ import './Choropleth.css';
 class Choropleth extends Component {
   state = {
     color: null,
+    counties: null,
     format: d3.format(''),
     index: 0,
     isOn: true,
@@ -31,9 +32,11 @@ class Choropleth extends Component {
     .then((files) => {
       const totalTempData = files[1];
       const yearTempData = new Map(files[1].map(d => [d['County Code'], d[1979]]));
+      const counties = new Map(files[1].map(d => [d['County Code'], d['County']]));
       const color = d3.scaleQuantize().domain([36, 90]).range(d3.schemeReds[9]);
 
       this.setState({
+        counties,
         yearTempData,
         totalTempData,
         color,
@@ -79,7 +82,7 @@ class Choropleth extends Component {
     this.setState({isOn: this.state.years[this.state.index] !== 2011});
 
     this.timer = setInterval(() => {
-      const { color, years, index, totalTempData } = this.state;
+      const { color, years, index, format, totalTempData } = this.state;
       const isLastYear = years[index] === 2011;
       if (isLastYear) this.endMap()
       const yearTempData = new Map(totalTempData.map(d => [d['County Code'], d[years[index]]]));
@@ -87,7 +90,15 @@ class Choropleth extends Component {
         yearTempData,
         index: isLastYear ? 32 : index + 1,
       }, 
-        () => d3.selectAll('path.county').attr("fill", d => color(yearTempData.get(d.id)))
+        () => {
+          d3.selectAll('path.county')
+            .attr("fill", d => color(yearTempData.get(d.id)))
+            .select("title")
+              .text(d =>  {
+                const countyTemp = yearTempData.get(d.id);
+                return isNaN(countyTemp) ? "Missing value" : `${countyTemp}f`; 
+              });
+        }  
       );
     }, 1000);
   }
@@ -142,7 +153,7 @@ class Choropleth extends Component {
       .append("title")
         .text(d => {
           const countyTemp = yearTempData.get(d.id);
-          return isNaN(countyTemp) ? "Missing value" : `${format(countyTemp)}f`;
+          return isNaN(countyTemp) ? "Missing value" : `${countyTemp}f`;
           }
         );
 
