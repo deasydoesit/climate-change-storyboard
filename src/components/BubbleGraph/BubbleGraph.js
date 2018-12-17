@@ -5,7 +5,6 @@ import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines,
     MarkSeries, Hint } from 'react-vis';
 
 // Internal imports
-import ShowcaseButton from './ShowcaseButton';
 import landData from '../../data/BubbleGraph/land-area-by-country.csv';
 import populationData from '../../data/BubbleGraph/population-by-country-2000-2014.csv';
 import co2Data from '../../data/BubbleGraph/co2-by-country-2000-2014.csv';
@@ -16,7 +15,6 @@ const colorRanges = {
   typeA: ['#59E4EC', '#0D676C'],
   typeB: ['#EFC1E3', '#B52F93']
 };
-
 
 class BubbleGraph extends Component {
   state = {
@@ -72,18 +70,8 @@ class BubbleGraph extends Component {
 
     return (
       <div className="plot-wrapper">
-        <div className="canvas-example-controls">
-          <ShowcaseButton
-            // onClick={() => this.setState({data: getRandomData()})}
-            buttonContent={'UPDATE DATA'}
-          />
-          <ShowcaseButton
-            // onClick={() => this.setState({colorType: nextType[colorType]})}
-            buttonContent={'UPDATE COLOR'}
-          />
-        </div>
         <XYPlot
-          margin={{ top:75, left:75 }}
+          margin={{ top:75, bottom:100, left:75}}
           onMouseLeave={() => this.setState({value: false})}
           width={960}
           height={600}
@@ -94,8 +82,15 @@ class BubbleGraph extends Component {
           <HorizontalGridLines />
           <XAxis 
             tickLabelAngle={-45}
+            tickFormat={ (value, i, scale, tickTotal) => {
+               return `${scale.tickFormat(15, '.0s')(value)}`
+            }}
           />
-          <YAxis />
+          <YAxis 
+            tickFormat={ (value, i, scale, tickTotal) => {
+                return `${scale.tickFormat(15, '.0s')(value)}`
+            }}
+          />
           <MarkSeries {...markSeriesProps} />
           {this.state.value ? <Hint value={this.state.value} /> : null}
         </XYPlot>
