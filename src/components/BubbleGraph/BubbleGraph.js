@@ -4,12 +4,12 @@ import * as d3 from 'd3';
 import { XYPlot, XAxis, YAxis, MarkSeries, Hint } from 'react-vis';
 
 // Internal imports
+import HorizontalSlider from './HorizontalSlider';
 import landData from '../../data/BubbleGraph/land-area-by-country.csv';
 import populationData from '../../data/BubbleGraph/population-by-country-2000-2014.csv';
 import co2Data from '../../data/BubbleGraph/co2-by-country-2000-2014.csv';
 
 import './BubbleGraph.css';
-import { FaSlidersH } from 'react-icons/fa';
 
 const colorRanges = {
   typeA: ['#59E4EC', '#0D676C'],
@@ -83,9 +83,16 @@ class BubbleGraph extends Component {
       x: parseInt(totalLandData[i].Area),
       y: parseInt(totalPopData[i][year]),
       size: parseInt(totalCo2Data[i][year]),
-      color: Math.random() * 10,
-      opacity: Math.random() * 0.5 + 0.5
+      color: 10,
+      opacity: 0.5
     }));
+  }
+
+  updateBubbleGraph = year => {
+    console.log(year);
+    this.setState({
+      data: this.setData(year),
+    })
   }
 
   render() {
@@ -102,43 +109,48 @@ class BubbleGraph extends Component {
     };
 
     return (
-      <div className="plot-wrapper">
-        <XYPlot
-          margin={{ top:75, bottom:100, left:75}}
-          onMouseLeave={() => this.setState({value: false})}
-          width={960}
-          height={600}
-          yType='log'
-          xType='log'
-          noHorizontalGridLines
-          noVerticalGridLines
-        >
-          <XAxis 
-            position="end"
-            title="Land area (sq. km)"
-            tickLabelAngle={-45}
-            tickTotal={10}
-            tickFormat={ (value, i, scale, tickTotal) => {
-               return `${scale.tickFormat(tickTotal, '.0s')(value)}`
-            }}
-          />
-          <YAxis 
-            position="end"
-            title="Population"
-            tickTotal={7}
-            tickFormat={ (value, i, scale, tickTotal ) => {
-                return `${scale.tickFormat(10, '.0s')(value)}`
-            }}
-          />
-          <MarkSeries {...markSeriesProps} />
-          {this.state.value 
-            ? <Hint 
-                align={{horizontal: 'right', vertical: 'top'}}
-                value={this.state.value} 
-              /> 
-            : null
-          }
-        </XYPlot>
+      <div>
+        <div className="plot-wrapper">
+          <XYPlot
+            margin={{ top:75, bottom:100, left:75}}
+            onMouseLeave={() => this.setState({value: false})}
+            width={960}
+            height={600}
+            yType='log'
+            xType='log'
+            noHorizontalGridLines
+            noVerticalGridLines
+            >
+            <XAxis 
+                position="end"
+                title="Land area (sq. km)"
+                tickLabelAngle={-45}
+                tickTotal={10}
+                tickFormat={ (value, i, scale, tickTotal) => {
+                return `${scale.tickFormat(tickTotal, '.0s')(value)}`
+                }}
+            />
+            <YAxis 
+                position="end"
+                title="Population"
+                tickTotal={7}
+                tickFormat={ (value, i, scale, tickTotal ) => {
+                    return `${scale.tickFormat(10, '.0s')(value)}`
+                }}
+            />
+            <MarkSeries {...markSeriesProps} />
+            {this.state.value 
+                ? <Hint 
+                    align={{horizontal: 'right', vertical: 'top'}}
+                    value={this.state.value} 
+                /> 
+                : null
+            }
+          </XYPlot>
+        </div>
+        <HorizontalSlider 
+          updateBubbleGraph={this.updateBubbleGraph}
+        />
       </div>
     );
   }
