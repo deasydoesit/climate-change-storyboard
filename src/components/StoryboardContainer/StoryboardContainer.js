@@ -14,9 +14,9 @@ class StoryboardContainer extends Component {
 
     return (
       <div>
-        {/* <BubbleGraph />
-        <Choropleth /> */}
         <LineGraph />
+        <BubbleGraph />
+        <Choropleth />
       </div>
     );
   }
