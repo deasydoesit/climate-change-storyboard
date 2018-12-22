@@ -12,11 +12,6 @@ import countryFlags from '../../data/BubbleGraph/country-flags.csv'
 
 import './BubbleGraph.css';
 
-const colorRanges = {
-  typeA: ['#59E4EC', '#0D676C'],
-  typeB: ['#EFC1E3', '#B52F93']
-};
-
 class BubbleGraph extends Component {
   state = {
     countryFlags: null,
@@ -35,7 +30,6 @@ class BubbleGraph extends Component {
       d3.csv(countryFlags),
     ])
     .then((files) => {
-      console.log(files)
       this.setState({
         totalLandData: files[0],
         totalPopData: files[1],
@@ -50,17 +44,11 @@ class BubbleGraph extends Component {
   }
 
   componentDidUpdate() {
-
     let diameter = [];
-
-    d3.selectAll('circle').each(function(d){
-      diameter.push(Math.ceil(d3.select(this).attr('r') * 2 ));
-    })
-
-    console.log(diameter)
 
     d3.selectAll('circle').each(function() {
         const el = this;
+        diameter.push(Math.ceil(d3.select(this).attr('r') * 2 ));
         d3.select(el.parentNode)
           .insert("svg")
           .attr("class", "wrapped")
@@ -83,7 +71,7 @@ class BubbleGraph extends Component {
 
   setData = year => {
     const { totalCo2Data, totalLandData, totalPopData } = this.state;
-    return new Array(32).fill(0).map((row, i) => ({
+    return new Array(36).fill(0).map((row, i) => ({
       Country: totalPopData[i]['Country'],
       x: parseInt(totalCo2Data[i][year]),
       y: parseInt(totalLandData[i].Area),  
@@ -104,7 +92,6 @@ class BubbleGraph extends Component {
       animation: true,
       sizeRange: [10, 50],
       seriesId: 'BubbleGraph',
-      colorRange: colorRanges[colorType],
       opacityType: 'literal',
       data,
       onValueMouseOver: value => this.setState({value}),
@@ -120,33 +107,35 @@ class BubbleGraph extends Component {
             height={600}
             yType='log'
             xType='log'
-             xDomain={[15000, 30000000]}
-             yDomain={[15000, 30000000]}
+            xDomain={[15000, 10000000]}
+            yDomain={[15000, 30000000]}
             noHorizontalGridLines
             noVerticalGridLines
           >
             <XAxis 
-                position="end"
-                title=""
-                tickLabelAngle={-45}
-                tickFormat={ (value, i, scale, tickTotal) => {
-                  return `${scale.tickFormat(10, '.0s')(value)}`
-                }}
+              position="end"
+              title="Greenhouse gas emissions (metric tonnes)"
+              tickLabelAngle={-45}
+              tickSize={4}
+              tickFormat={ (value, i, scale, tickTotal) => {
+                return `${scale.tickFormat(10, '.0s')(value)}`
+              }}
             />
             <YAxis 
-                position="end"
-                title=""
-                tickFormat={ (value, i, scale, tickTotal ) => {
-                    return `${scale.tickFormat(10, '.0s')(value)}`
-                }}
+              position="end"
+              title="Land area (sq. km)"
+              tickSize={4}
+              tickFormat={ (value, i, scale, tickTotal ) => {
+                return `${scale.tickFormat(10, '.0s')(value)}`
+              }}
             />
             <MarkSeries {...markSeriesProps} />
             {this.state.value 
-                ? <Hint 
-                    align={{horizontal: 'right', vertical: 'top'}}
-                    value={this.state.value} 
-                /> 
-                : null
+              ? <Hint 
+                align={{horizontal: 'right', vertical: 'top'}}
+                value={this.state.value} 
+              /> 
+              : null
             }
           </XYPlot>
         </div>
@@ -159,11 +148,3 @@ class BubbleGraph extends Component {
 }
 
 export default BubbleGraph;
-
-
-// To Do:
-// 1) Sizes of bubbles
-// 2) Background images
-    // make array of images, alphabetized
-    // pass image in based on index
-// 3) Change via slider

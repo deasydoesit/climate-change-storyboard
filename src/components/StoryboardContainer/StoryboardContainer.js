@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 // Internal imports
 import BubbleGraph from '../BubbleGraph';
 import Choropleth from '../Choropleth';
+import LineGraph from '../LineGraph';
 
 import './StoryboardContainer.css';
 
@@ -13,8 +14,9 @@ class StoryboardContainer extends Component {
 
     return (
       <div>
-        <BubbleGraph />
-        {/* <Choropleth /> */}
+        {/* <BubbleGraph />
+        <Choropleth /> */}
+        <LineGraph />
       </div>
     );
   }
