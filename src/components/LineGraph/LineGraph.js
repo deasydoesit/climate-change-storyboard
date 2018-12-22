@@ -1,7 +1,7 @@
 // External imports
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import { XYPlot, XAxis, YAxis, ChartLabel, HorizontalGridLines, VerticalGridLines, LineSeries } from 'react-vis';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, Hint } from 'react-vis';
 
 // Internal imports
 import co2Data from '../../data/LineGraph/co2-ppm-0-2014.csv';
@@ -11,6 +11,7 @@ import './LineGraph.css';
 class LineGraph extends Component {
    state = {
     co2Data: [],
+    value: false,
   };
 
   componentDidMount() {
@@ -34,7 +35,11 @@ class LineGraph extends Component {
     console.log(this.state.co2Data)
     return (
       <div>
-        <XYPlot width={960} height={600}>
+        <XYPlot 
+          onMouseLeave={() => this.setState({value: false})}
+          width={960} 
+          height={600}
+        >
           <HorizontalGridLines />
           <VerticalGridLines />
           <XAxis />
@@ -43,7 +48,9 @@ class LineGraph extends Component {
             className="third-series"
             curve={'curveMonotoneX'}
             data={this.state.co2Data}
+            onNearestX={d => this.setState({value: d})}
           />
+          {this.state.value && <Hint value={this.state.value} />}
         </XYPlot>
       </div>
     );
