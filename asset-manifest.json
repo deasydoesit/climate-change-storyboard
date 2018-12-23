@@ -1,0 +1,19 @@
+{
+  "main.css": "/climate-change-storyboard/static/css/main.5a53b507.chunk.css",
+  "main.js": "/climate-change-storyboard/static/js/main.b68bd673.chunk.js",
+  "main.js.map": "/climate-change-storyboard/static/js/main.b68bd673.chunk.js.map",
+  "static/js/1.294f5d26.chunk.js": "/climate-change-storyboard/static/js/1.294f5d26.chunk.js",
+  "static/js/1.294f5d26.chunk.js.map": "/climate-change-storyboard/static/js/1.294f5d26.chunk.js.map",
+  "runtime~main.js": "/climate-change-storyboard/static/js/runtime~main.7d1d3626.js",
+  "runtime~main.js.map": "/climate-change-storyboard/static/js/runtime~main.7d1d3626.js.map",
+  "static/media/land-area-by-country.csv": "/climate-change-storyboard/static/media/land-area-by-country.3064315f.csv",
+  "static/media/co2-by-country-2000-2014.csv": "/climate-change-storyboard/static/media/co2-by-country-2000-2014.5cb5bbd6.csv",
+  "static/media/country-flags.csv": "/climate-change-storyboard/static/media/country-flags.a1597ea9.csv",
+  "static/media/county-temp-1979-2011.csv": "/climate-change-storyboard/static/media/county-temp-1979-2011.72529182.csv",
+  "static/media/co2-ppm-0-2014.csv": "/climate-change-storyboard/static/media/co2-ppm-0-2014.13a1838a.csv",
+  "static/media/population-by-country-2000-2014.csv": "/climate-change-storyboard/static/media/population-by-country-2000-2014.88f1cef7.csv",
+  "static/css/main.5a53b507.chunk.css.map": "/climate-change-storyboard/static/css/main.5a53b507.chunk.css.map",
+  "index.html": "/climate-change-storyboard/index.html",
+  "precache-manifest.633ce79f51a2ca6584a7511447436eec.js": "/climate-change-storyboard/precache-manifest.633ce79f51a2ca6584a7511447436eec.js",
+  "service-worker.js": "/climate-change-storyboard/service-worker.js"
+}
