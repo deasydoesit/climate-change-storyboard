@@ -1,6 +1,8 @@
 import React from 'react';
 import { Parallax } from 'react-scroll-parallax';
 
+import { CloudLeft, CloudMiddle, CloudRight } from '../Clouds';
+
 import './HeroBanner.css';
 
 const HeroBanner = () => (
@@ -10,13 +12,16 @@ const HeroBanner = () => (
         className="parallax-hero"
         offsetYMax={20}
         offsetYMin={-20}
-        slowerScrollRate
+        slowerScrollRate={true}
         tag="figure"
       >
         <div className='parallax-hero-content'>
           A Climate, Changing.
         </div>
       </Parallax>
+      <CloudLeft />
+      <CloudRight />
+      <CloudMiddle />
     </div>
   </div>
 );
