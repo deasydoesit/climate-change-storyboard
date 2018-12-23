@@ -21,8 +21,8 @@ class LineGraph extends Component {
     .then((files) => {
       const data = files[0].map(d => {
         return { 
-            x: parseInt(d.Year), 
-            y: parseInt(d['Global Mean'])
+            x: parseInt(d.year), 
+            y: parseInt(d.data_mean_global)
         };
       });
       this.setState({

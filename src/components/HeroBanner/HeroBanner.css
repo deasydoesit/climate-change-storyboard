@@ -1,0 +1,31 @@
+.parallax-hero {
+  margin-block-start: 0 !important;
+  margin-inline-start: 0 !important;
+  margin-inline-end: 0 !important;
+}
+
+.parallax-hero-background {
+  height:200vh; 
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: darkgrey;
+  background-image: linear-gradient(darkgrey, white);
+}
+
+.parallax-hero-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.parallax-hero-content {
+  color: white;
+  display: table;
+  margin: 0 auto;
+  position: relative;
+  border: 5px solid white;
+  padding: 2rem;
+  top: -5rem;
+}
