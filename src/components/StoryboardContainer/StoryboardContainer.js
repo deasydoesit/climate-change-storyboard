@@ -14,7 +14,7 @@ class StoryboardContainer extends Component {
   render() { 
 
     return (
-      <div className='container'>
+      <div>
         <HeroBanner />
         <LineGraph />
         {/* <BubbleGraph />

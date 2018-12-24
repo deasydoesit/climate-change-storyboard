@@ -1,3 +1,12 @@
+.graph-container {
+  max-width: 1280px;
+  margin: auto;
+}
+
+.line-graph-plot {
+  margin: auto;
+}
+
 .react-vis-magic-css-import-rule {
   display: inherit;
 }

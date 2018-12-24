@@ -16,7 +16,7 @@ const HeroBanner = () => (
         tag="figure"
       >
         <div className='parallax-hero-content'>
-          A Climate, Changing.
+          A Climate, <span className='text-rd'>Changing</span>
         </div>
       </Parallax>
       <CloudLeft />

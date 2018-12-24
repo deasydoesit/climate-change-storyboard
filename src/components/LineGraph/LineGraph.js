@@ -34,8 +34,9 @@ class LineGraph extends Component {
   render() {
     console.log(this.state.co2Data)
     return (
-      <div>
+      <div className='graph-container'>
         <XYPlot 
+          className='line-graph-plot'
           onMouseLeave={() => this.setState({value: false})}
           width={960} 
           height={600}
