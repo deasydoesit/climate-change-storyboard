@@ -5,7 +5,7 @@
 }
 
 .parallax-hero-background {
-  height: 150vh; 
+  height: 130vh; 
   width: 100%;
   align-items: center;
   justify-content: center;
@@ -27,8 +27,9 @@
   margin: 0 auto;
   position: relative;
   border: 5px solid white;
-  padding: 2rem;
-  font-size: 3rem;
+  padding: 3rem;
+  font-size: 3.5rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .text-rd {

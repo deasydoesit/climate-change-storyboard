@@ -6,7 +6,8 @@
 
 .inline-image-left {
   position: relative;
-  width: 100%;
+  width: 120%;
   height: auto;
   top: 2rem;
+  right: 5rem;
 }

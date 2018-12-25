@@ -7,6 +7,7 @@
 .inline-image-right {
   position: relative;
   left: 120px;
-  width: 100%;
+  width: 120%;
   height: auto;
+  right: 3rem
 }
