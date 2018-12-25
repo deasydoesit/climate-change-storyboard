@@ -21,8 +21,9 @@ class LineGraph extends Component {
     co2Data2000: [],
     co2DataTotal: [],
     data: [],
+    ellipsis: " ...",
     segmentIndex: 0,
-    lineGraphHeader: "For centuries, and even thousands of years, atmospheric carbon dioxide emissions remained steady ...",
+    lineGraphHeader: " atmospheric carbon dioxide emissions remained steady",
     value: false,
   };
 
@@ -55,8 +56,9 @@ class LineGraph extends Component {
     const { segmentIndex } = this.state;
     const co2Segments = ['co2Data1000', 'co2Data1500', 'co2Data2000', 'co2DataTotal'];
     const textSegments = [
-      'For centuries, and even thousands of years, atmospheric carbon dioxide emissions remained steady. '
-
+      '. Dating back four hundred thousand years and into the common era, CO2 levels oscillated between 180 and 240 ppm',
+      '. This pattern continued through the previous millennium up until the industrial revolution',
+      '. At that point, the atmospheric CO2 concentration went parabolic, reaching levels not seen since the Earth\'s formation.'
     ]
 
     const segment = co2Segments[segmentIndex];
@@ -71,10 +73,14 @@ class LineGraph extends Component {
   }
 
   render() {
-    const { segmentIndex, lineGraphHeader } = this.state;
+    const { segmentIndex, lineGraphHeader, ellipsis } = this.state;
     return (
       <div className='graph-container'>
-        <h1 className='line-graph-header'>{lineGraphHeader}</h1>
+        {/* Graph Header */}
+        <h1 className='line-graph-header'>
+          <span className='line-graph-lead'>For centuries,</span>
+          {lineGraphHeader}{segmentIndex === 3 ? null : ellipsis}
+        </h1>
         <div className='line-graph-btn-container'>
           <Button outline color="danger" className='line-graph-btn' onClick={() => this.handleClick()} >
             <span className='icon-holder'>
@@ -83,6 +89,7 @@ class LineGraph extends Component {
             click to continue
           </Button>
         </div>
+        {/* Line Graph */}
         <XYPlot 
           animate={true}
           className='line-graph-plot'
