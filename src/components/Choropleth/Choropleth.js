@@ -191,7 +191,7 @@ class Choropleth extends Component {
           <svg className='choropleth-graph' ref='anchor' width={960} height={600} />
         </div>
         <div className='choropleth-data-attribute'>
-          Data from the Organisation for Economic Co-operation and Development (OECD) Department of Statistics
+          Data from the Centers for Disease Control (CDC) WONDER Program
         </div>
       </div>
     );

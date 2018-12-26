@@ -164,7 +164,7 @@ class BubbleGraph extends Component {
               Bubble size corresponds to country population
             </div>
             <div className='bubble-graph-data-attribute'>
-              Data from the Organisation for Economic Co-operation and Development (OECD) Department of Statistics
+              Data from the World Bank and the Organisation for Economic Co-operation and Development (OECD) Department of Statistics
             </div>
           </div>
         </div>
