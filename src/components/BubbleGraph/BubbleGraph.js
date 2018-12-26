@@ -98,50 +98,58 @@ class BubbleGraph extends Component {
     };
 
     return (
-      <div>
-        <div className="plot-wrapper">
-          <XYPlot
-            margin={{ top:75, bottom:100, left:75}}
-            onMouseLeave={() => this.setState({value: false})}
-            width={960}
-            height={600}
-            yType='log'
-            xType='log'
-            xDomain={[15000, 10000000]}
-            yDomain={[15000, 30000000]}
-            noHorizontalGridLines
-            noVerticalGridLines
-          >
-            <XAxis 
-              position="end"
-              title="Greenhouse gas emissions (metric tonnes)"
-              tickLabelAngle={-45}
-              tickSize={4}
-              tickFormat={ (value, i, scale, tickTotal) => {
-                return `${scale.tickFormat(10, '.0s')(value)}`
-              }}
+      <div className='bubble-graph-container'>
+        {/* Bubble graph header */}
+        <div className='bubble-graph-background'>
+          <div className='bubble-graph-quote'>
+            "Emissions of greenhouse gases warm the planet, altering the carbon and water cycles. A warmer ocean stores more heat, providing more fuel for hurricanes. A warmer atmosphere holds more water, bringing dangerous deluges. Rising sea levels threaten coastal zones."
+            <div className='bubble-graph-attribute'>- Johan Rockstrom, Stockholm University</div>
+          </div>
+          {/* Bubble Graph */}
+          <div className="plot-wrapper">
+            <HorizontalSlider 
+              updateBubbleGraph={this.updateBubbleGraph}
             />
-            <YAxis 
-              position="end"
-              title="Land area (sq. km)"
-              tickSize={4}
-              tickFormat={ (value, i, scale, tickTotal ) => {
-                return `${scale.tickFormat(10, '.0s')(value)}`
-              }}
-            />
-            <MarkSeries {...markSeriesProps} />
-            {this.state.value 
-              ? <Hint 
-                align={{horizontal: 'right', vertical: 'top'}}
-                value={this.state.value} 
-              /> 
-              : null
-            }
-          </XYPlot>
+            <XYPlot
+              margin={{ top:75, bottom:100, left:75}}
+              onMouseLeave={() => this.setState({value: false})}
+              width={960}
+              height={600}
+              yType='log'
+              xType='log'
+              xDomain={[15000, 10000000]}
+              yDomain={[15000, 30000000]}
+              noHorizontalGridLines
+              noVerticalGridLines
+            >
+              <XAxis 
+                position="end"
+                title="Greenhouse gas emissions (metric tonnes)"
+                tickLabelAngle={-45}
+                tickSize={4}
+                tickFormat={ (value, i, scale, tickTotal) => {
+                  return `${scale.tickFormat(10, '.0s')(value)}`
+                }}
+              />
+              <YAxis 
+                position="end"
+                title="Land area (sq. km)"
+                tickSize={4}
+                tickFormat={ (value, i, scale, tickTotal ) => {
+                  return `${scale.tickFormat(10, '.0s')(value)}`
+                }}
+              />
+              <MarkSeries {...markSeriesProps} />
+              {this.state.value 
+                ? <Hint 
+                  align={{horizontal: 'right', vertical: 'top'}}
+                  value={this.state.value} 
+                /> 
+                : null
+              }
+            </XYPlot>
+          </div>
         </div>
-        <HorizontalSlider 
-          updateBubbleGraph={this.updateBubbleGraph}
-        />
       </div>
     );
   }

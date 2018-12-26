@@ -99,7 +99,7 @@ class LineGraph extends Component {
           {/* Line Graph */}
           <XYPlot 
             animate={true}
-            className='line-graph-plot'
+            className={`line-graph-plot ${segmentIndex === 3 ? 'no-btn' : ''}`}
             onMouseLeave={() => this.setState({value: false})}
             width={700} 
             height={400}
