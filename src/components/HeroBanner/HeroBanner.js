@@ -23,7 +23,7 @@ const HeroBanner = () => (
       <CloudRight />
       <CloudMiddle />
     </div>
-  </div>
+ </div>
 );
 
 export default HeroBanner;

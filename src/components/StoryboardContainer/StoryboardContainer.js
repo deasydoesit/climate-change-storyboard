@@ -8,6 +8,7 @@ import Choropleth from '../Choropleth';
 import LineGraph from '../LineGraph';
 
 import './StoryboardContainer.css';
+import map from '../../images/hero-background.png';
 
 class StoryboardContainer extends Component {
  
@@ -17,8 +18,15 @@ class StoryboardContainer extends Component {
       <div>
         <HeroBanner />
         <LineGraph />
-        {/* <BubbleGraph />
-        <Choropleth /> */}
+        <div className='bubble-graph-reveal'>
+          <div className='bg'>
+            <div>
+              Emissions of greenhouse gases warm the planet, altering the carbon and water cycles. A warmer ocean stores more heat, providing more fuel for hurricanes. A warmer atmosphere holds more water, bringing dangerous deluges. Rising sea levels threaten coastal zones.
+            </div>
+            <BubbleGraph />
+          </div>
+        </div>
+        <Choropleth />
       </div>
     );
   }

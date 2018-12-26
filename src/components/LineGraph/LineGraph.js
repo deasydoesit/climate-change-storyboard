@@ -23,7 +23,7 @@ class LineGraph extends Component {
     data: [],
     ellipsis: " ...",
     segmentIndex: 0,
-    lineGraphHeader: " atmospheric carbon dioxide emissions remained steady",
+    lineGraphHeader: " global levels of carbon dioxide in the atmosphere remained steady",
     value: false,
   };
 
@@ -74,48 +74,56 @@ class LineGraph extends Component {
 
   render() {
     const { segmentIndex, lineGraphHeader, ellipsis } = this.state;
+
     return (
-      <div className='graph-container'>
-        {/* Graph Header */}
-        <h1 className='line-graph-header'>
-          <span className='line-graph-lead'>For centuries,</span>
-          {lineGraphHeader}{segmentIndex === 3 ? null : ellipsis}
-        </h1>
-        <div className='line-graph-btn-container'>
-          <Button outline color="danger" className='line-graph-btn' onClick={() => this.handleClick()} >
-            <span className='icon-holder'>
-              <img src="https://image.flaticon.com/icons/svg/56/56380.svg" alt="One finger tap gesture of outlined hand symbol" class="replaced-svg" /> 
-            </span>
-            click to continue
-          </Button>
+      <div className='line-graph-backgound'>
+        <div className='line-graph-container'>
+          {/* Graph Header */}
+          <h1 className='line-graph-header'>
+            <span className='line-graph-lead'>For centuries,</span>
+            {lineGraphHeader}{segmentIndex === 3 ? null : ellipsis}
+          </h1>
+          <div className='line-graph-btn-container'>
+            <Button 
+              outline 
+              color="danger" 
+              className={`line-graph-btn ${segmentIndex === 3 ? 'hide-btn' : ''}`} 
+              onClick={() => this.handleClick()} 
+            >
+              <span className='icon-holder'>
+                <img src="https://image.flaticon.com/icons/svg/56/56380.svg" alt="One finger tap gesture of outlined hand symbol" class="replaced-svg" /> 
+              </span>
+              Click to Continue
+            </Button>
+          </div>
+          {/* Line Graph */}
+          <XYPlot 
+            animate={true}
+            className='line-graph-plot'
+            onMouseLeave={() => this.setState({value: false})}
+            width={700} 
+            height={400}
+            yDomain={ segmentIndex === 3 ? null : [250, 300] }
+          >
+            <HorizontalGridLines />
+            <VerticalGridLines />
+            <XAxis 
+              position="end"
+              title="Year"
+            />
+            <YAxis 
+              position="end"
+              title="Carbon dioxide level (ppm)"
+            />
+            <LineSeries
+              className='line-graph-path'
+              curve={'curveMonotoneX'}
+              data={this.state.data}
+              onNearestX={d => this.setState({value: d})}
+            />
+            {this.state.value && <Hint value={this.state.value} />}
+          </XYPlot>
         </div>
-        {/* Line Graph */}
-        <XYPlot 
-          animate={true}
-          className='line-graph-plot'
-          onMouseLeave={() => this.setState({value: false})}
-          width={700} 
-          height={400}
-          yDomain={ segmentIndex === 3 ? null : [250, 300] }
-        >
-          <HorizontalGridLines />
-          <VerticalGridLines />
-          <XAxis 
-            position="end"
-            title="Year"
-          />
-          <YAxis 
-            position="end"
-            title="Carbon dioxide level (ppm)"
-          />
-          <LineSeries
-            className='line-graph-path'
-            curve={'curveMonotoneX'}
-            data={this.state.data}
-            onNearestX={d => this.setState({value: d})}
-          />
-          {this.state.value && <Hint value={this.state.value} />}
-        </XYPlot>
       </div>
     );
   }

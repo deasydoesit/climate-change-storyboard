@@ -1,13 +1,13 @@
 .image-container {
   position: relative;
   display: inline-block;
-  width: 40%
+  width: 40%;
+  top: 20vh;
 }
 
 .inline-image-right {
   position: relative;
-  left: 120px;
   width: 120%;
   height: auto;
-  right: 3rem
+  right: -7rem
 }
