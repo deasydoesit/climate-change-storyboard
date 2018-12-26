@@ -102,3 +102,9 @@
     width: 70%;
   }
 }
+
+@media only screen and (min-width: 1850px) {
+  .bubble-graph-container {
+    height: 190vh;
+  }
+}

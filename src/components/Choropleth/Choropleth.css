@@ -4,7 +4,7 @@ path {
 }
 
 .choropleth-section-container {
-  height: 110vh;
+  height: 107vh;
   background-color: gray;
 }
 
@@ -12,7 +12,8 @@ path {
   color: white;
   font-size: 0.8rem;
   opacity: 0.5;
-  text-align: center
+  text-align: center;
+  padding-top: 2rem;
 }
 
 .choropleth-title {
@@ -24,7 +25,7 @@ path {
 .choropleth-header {
   text-align: center;
   background-color: gray;
-  padding-top: 50px;
+  padding-top: 5rem;
 }
 
 .choropleth-container {
@@ -45,4 +46,10 @@ path {
   fill: #DCDCDC;
   stroke: #fff;
   stroke-width: .1px;
+}
+
+@media only screen and (max-width: 1441px) {
+  .choropleth-section-container {
+    height: 125vh !important;
+  }
 }
