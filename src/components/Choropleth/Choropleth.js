@@ -171,7 +171,7 @@ class Choropleth extends Component {
     const { isOn, showButtons, years, index } = this.state;
 
     return (
-      <div>
+      <div className='choropleth-container'>
         <div>
           {years[index]}
         </div>

@@ -3,6 +3,13 @@ path {
   stroke-linecap: round;
 }
 
+.choropleth-container {
+  height: 105vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
 .districts {
   fill: #DCDCDC;
 }

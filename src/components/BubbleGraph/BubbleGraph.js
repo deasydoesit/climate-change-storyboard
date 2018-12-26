@@ -16,6 +16,7 @@ class BubbleGraph extends Component {
   state = {
     countryFlags: null,
     data: null,
+    hasSlid: false,
     totalPopData: null,
     totalCo2Data: null,
     totalLandData: null,
@@ -82,11 +83,12 @@ class BubbleGraph extends Component {
   updateBubbleGraph = year => {
     this.setState({
       data: this.setData(year),
+      hasSlid: true,
     });
   }
 
   render() {
-    const { data, colorType } = this.state;
+    const { data, hasSlid } = this.state;
 
     const markSeriesProps = {
       animation: true,
@@ -99,17 +101,25 @@ class BubbleGraph extends Component {
 
     return (
       <div className='bubble-graph-container'>
-        {/* Bubble graph header */}
+
+        {/* Bubble graph quote */}
         <div className='bubble-graph-background'>
           <div className='bubble-graph-quote'>
             "Emissions of greenhouse gases warm the planet, altering the carbon and water cycles. A warmer ocean stores more heat, providing more fuel for hurricanes. A warmer atmosphere holds more water, bringing dangerous deluges. Rising sea levels threaten coastal zones."
             <div className='bubble-graph-attribute'>- Johan Rockstrom, Stockholm University</div>
           </div>
-          {/* Bubble Graph */}
+
+          {/* Bubble graph header */}
           <div className="plot-wrapper">
+            <div className='bubble-graph-title'>
+              Greenhouse Gas Emissions by Country
+            </div>
             <HorizontalSlider 
               updateBubbleGraph={this.updateBubbleGraph}
+              hasSlid={hasSlid}
             />
+
+            {/* Bubble graph */}
             <XYPlot
               margin={{ top:75, bottom:100, left:75}}
               onMouseLeave={() => this.setState({value: false})}

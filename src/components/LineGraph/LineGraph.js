@@ -78,6 +78,7 @@ class LineGraph extends Component {
     return (
       <div className='line-graph-backgound'>
         <div className='line-graph-container'>
+
           {/* Graph Header */}
           <h1 className='line-graph-header'>
             <span className='line-graph-lead'>For centuries,</span>
@@ -96,6 +97,7 @@ class LineGraph extends Component {
               Click to Continue
             </Button>
           </div>
+          
           {/* Line Graph */}
           <XYPlot 
             animate={true}

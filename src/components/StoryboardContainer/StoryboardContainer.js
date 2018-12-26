@@ -8,7 +8,6 @@ import Choropleth from '../Choropleth';
 import LineGraph from '../LineGraph';
 
 import './StoryboardContainer.css';
-import map from '../../images/hero-background.png';
 
 class StoryboardContainer extends Component {
  

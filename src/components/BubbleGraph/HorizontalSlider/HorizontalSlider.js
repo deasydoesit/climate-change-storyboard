@@ -17,6 +17,11 @@ class HorizontalSlider extends Component {
           handle={SliderHandle} 
           onChange={(v) => this.props.updateBubbleGraph(v)}
         />
+        <span 
+          className={`slider-hint ${this.props.hasSlid ? 'hide-slider-hint' : ''}`}
+        >
+          Slide to udpate graph
+        </span>
       </div>
     )
   }
