@@ -9,7 +9,7 @@
 }
 
 .bubble-graph-container {
-  height: 250vh;
+  height: 220vh;
   width: 100vw;
   display: flex;
   align-items: center;
@@ -17,7 +17,7 @@
 
 .bubble-graph-quote {
   width: 60%;
-  margin: 30rem auto 15rem auto;
+  margin: 15rem auto;
   padding: 25px;
   background-color: ghostwhite;
   opacity: 0.9;

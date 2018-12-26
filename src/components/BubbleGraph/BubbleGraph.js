@@ -20,7 +20,8 @@ class BubbleGraph extends Component {
     totalPopData: null,
     totalCo2Data: null,
     totalLandData: null,
-    value: false
+    value: false,
+    year: 2000,
   };
 
   componentDidMount() {
@@ -84,6 +85,7 @@ class BubbleGraph extends Component {
     this.setState({
       data: this.setData(year),
       hasSlid: true,
+      year: year,
     });
   }
 
@@ -112,7 +114,7 @@ class BubbleGraph extends Component {
           {/* Bubble graph header */}
           <div className="plot-wrapper">
             <div className='bubble-graph-title'>
-              Greenhouse Gas Emissions by Country
+              Greenhouse Gas Emissions by Country in {this.state.year}
             </div>
             <HorizontalSlider 
               updateBubbleGraph={this.updateBubbleGraph}
