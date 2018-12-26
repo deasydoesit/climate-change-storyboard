@@ -16,7 +16,7 @@ class Choropleth extends Component {
     counties: null,
     format: d3.format(''),
     index: 0,
-    isOn: true,
+    isOn: false,
     showButtons: true,
     totalTempData: null,
     us: null,
@@ -44,7 +44,6 @@ class Choropleth extends Component {
       }, 
         () => {
           this.renderMap();
-          this.startMap();
         }
       );
     })
@@ -171,18 +170,29 @@ class Choropleth extends Component {
     const { isOn, showButtons, years, index } = this.state;
 
     return (
-      <div className='choropleth-container'>
-        <div>
-          {years[index]}
+      <div className='choropleth-section-container'>
+
+        {/* Choropleth header */}
+        <div className='choropleth-header'>
+          <div className='choropleth-title'>
+            Temperature by US County in {years[index]}
+          </div>
+          <ControlButtons 
+            isOn={isOn}
+            showButtons={showButtons}
+            pauseMap={this.pauseMap}
+            startMap={this.startMap}
+            resetMap={this.resetMap}
+          />
         </div>
-        <svg ref='anchor' width={960} height={600} />
-        <ControlButtons 
-          isOn={isOn}
-          showButtons={showButtons}
-          pauseMap={this.pauseMap}
-          startMap={this.startMap}
-          resetMap={this.resetMap}
-        />
+
+        {/* Choropleth */}
+        <div className='choropleth-container'>
+          <svg className='choropleth-graph' ref='anchor' width={960} height={600} />
+        </div>
+        <div className='choropleth-data-attribute'>
+          Data from the Organisation for Economic Co-operation and Development (OECD) Department of Statistics
+        </div>
       </div>
     );
   }

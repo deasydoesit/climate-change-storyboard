@@ -70,6 +70,9 @@ class LineGraph extends Component {
             />
             {this.state.value && <Hint value={this.state.value} />}
           </XYPlot>
+          <span className='line-graph-data-attribute'>
+            Data from the Institute for Atmospheric and Climate Science (IAC) at Eidgenössische Technische Hochschule in Zürich, Switzerland
+          </span>
         </div>
       </div>
     );

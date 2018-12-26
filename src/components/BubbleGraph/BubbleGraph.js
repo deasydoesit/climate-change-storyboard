@@ -160,6 +160,12 @@ class BubbleGraph extends Component {
                 : null
               }
             </XYPlot>
+            <div className='bubble-graph-info'>
+              Bubble size corresponds to country population
+            </div>
+            <div className='bubble-graph-data-attribute'>
+              Data from the Organisation for Economic Co-operation and Development (OECD) Department of Statistics
+            </div>
           </div>
         </div>
       </div>

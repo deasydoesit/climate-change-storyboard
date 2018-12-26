@@ -2,6 +2,7 @@
   height: 100vh; 
   width: 1280px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .line-graph-backgound {
@@ -14,7 +15,7 @@
   align-items: center;
   justify-content: center;
   display: flex;
-  padding-bottom: 50px;
+  padding-bottom: 70px;
   box-shadow: 0px 11px 20px -10px rgba(0,0,0,0.7);
 }
 
@@ -28,13 +29,18 @@
   height: 30vh;
 }
 
+.line-graph-data-attribute {
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+
 .line-graph-lead {
   font-size: 3rem;
   text-decoration: underline;
 }
 
 .line-graph-plot {
-  margin: 50px auto;
+  margin: 50px auto 25px auto;
   padding: 15px 10px 5px 10px;
   box-shadow: 5px 3px 20px 5px rgba(0,0,0,0.1);
   border-radius: 5px;

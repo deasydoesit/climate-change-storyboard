@@ -9,7 +9,7 @@ const ControlButtons = (props) => {
   const { isOn, showButtons, pauseMap, startMap, resetMap } = props;
   
   return (
-    <div>
+    <div className='choropleth-buttons'>
       {showButtons && isOn && 
         <div 
           onClick={() => pauseMap()}
@@ -21,7 +21,7 @@ const ControlButtons = (props) => {
         <div 
           onClick={() => startMap()}
         >
-          <FaPlay className={'btn-control'}/>
+          <FaPlay className={'btn-control btn-play'}/>
         </div>
       }
       {!showButtons &&

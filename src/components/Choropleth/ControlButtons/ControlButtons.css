@@ -1,4 +1,21 @@
+.btn-control {
+  height: 1.5em;
+  width: 1.5em;
+  padding: 7px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+  background-color: lightgray;
+  border-radius: 5px;
+}
+
+.btn-play {
+  fill: firebrick;
+}
+
 .btn-control:hover {
   cursor: pointer;
-  transform: scale(1.1, 1.1);
+  transform: scale(1.05, 1.05);
+}
+
+.choropleth-buttons {
+  padding-top: 10px;
 }
