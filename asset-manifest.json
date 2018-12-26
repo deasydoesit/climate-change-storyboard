@@ -1,9 +1,9 @@
 {
-  "main.css": "/climate-change-storyboard/static/css/main.29cd8471.chunk.css",
-  "main.js": "/climate-change-storyboard/static/js/main.1872d268.chunk.js",
-  "main.js.map": "/climate-change-storyboard/static/js/main.1872d268.chunk.js.map",
-  "static/js/1.b696b7c4.chunk.js": "/climate-change-storyboard/static/js/1.b696b7c4.chunk.js",
-  "static/js/1.b696b7c4.chunk.js.map": "/climate-change-storyboard/static/js/1.b696b7c4.chunk.js.map",
+  "main.css": "/climate-change-storyboard/static/css/main.fac2fd54.chunk.css",
+  "main.js": "/climate-change-storyboard/static/js/main.74433840.chunk.js",
+  "main.js.map": "/climate-change-storyboard/static/js/main.74433840.chunk.js.map",
+  "static/js/1.054661b0.chunk.js": "/climate-change-storyboard/static/js/1.054661b0.chunk.js",
+  "static/js/1.054661b0.chunk.js.map": "/climate-change-storyboard/static/js/1.054661b0.chunk.js.map",
   "runtime~main.js": "/climate-change-storyboard/static/js/runtime~main.7d1d3626.js",
   "runtime~main.js.map": "/climate-change-storyboard/static/js/runtime~main.7d1d3626.js.map",
   "static/media/land-area-by-country.csv": "/climate-change-storyboard/static/media/land-area-by-country.3064315f.csv",
@@ -15,10 +15,10 @@
   "static/media/co2-ppm-1000-1500.csv": "/climate-change-storyboard/static/media/co2-ppm-1000-1500.a15e202e.csv",
   "static/media/co2-ppm-1500-2014.csv": "/climate-change-storyboard/static/media/co2-ppm-1500-2014.7186878a.csv",
   "static/media/co2-ppm-total.csv": "/climate-change-storyboard/static/media/co2-ppm-total.e6f2fa40.csv",
-  "static/media/StoryboardContainer.css": "/climate-change-storyboard/static/media/hero-background.e8075d2e.jpg",
+  "static/media/hero-background.png": "/climate-change-storyboard/static/media/hero-background.f5bc93cc.png",
   "static/media/population-by-country-2000-2014.csv": "/climate-change-storyboard/static/media/population-by-country-2000-2014.88f1cef7.csv",
-  "static/css/main.29cd8471.chunk.css.map": "/climate-change-storyboard/static/css/main.29cd8471.chunk.css.map",
+  "static/css/main.fac2fd54.chunk.css.map": "/climate-change-storyboard/static/css/main.fac2fd54.chunk.css.map",
   "index.html": "/climate-change-storyboard/index.html",
-  "precache-manifest.2a3dad21bce7e778acf6ee385b707389.js": "/climate-change-storyboard/precache-manifest.2a3dad21bce7e778acf6ee385b707389.js",
+  "precache-manifest.7bd8d53e9c8b6de50af44bf82bd843a9.js": "/climate-change-storyboard/precache-manifest.7bd8d53e9c8b6de50af44bf82bd843a9.js",
   "service-worker.js": "/climate-change-storyboard/service-worker.js"
 }
