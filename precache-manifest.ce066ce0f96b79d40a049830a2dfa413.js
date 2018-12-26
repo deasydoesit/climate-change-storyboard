@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/climate-change-storyboard/static/media/county-temp-1979-2011.72529182.csv"
   },
   {
-    "revision": "74433840951f6bc499f9",
-    "url": "/climate-change-storyboard/static/css/main.fac2fd54.chunk.css"
+    "revision": "134d15b77b7d565ed800",
+    "url": "/climate-change-storyboard/static/css/main.623a7ce5.chunk.css"
   },
   {
     "revision": "054661b07c626e44c99f",
@@ -32,8 +32,8 @@ self.__precacheManifest = [
     "url": "/climate-change-storyboard/static/media/country-flags.a1597ea9.csv"
   },
   {
-    "revision": "74433840951f6bc499f9",
-    "url": "/climate-change-storyboard/static/js/main.74433840.chunk.js"
+    "revision": "134d15b77b7d565ed800",
+    "url": "/climate-change-storyboard/static/js/main.134d15b7.chunk.js"
   },
   {
     "revision": "79b47e9d540b46fa5790c8659a3fc4c4",
@@ -56,11 +56,11 @@ self.__precacheManifest = [
     "url": "/climate-change-storyboard/static/media/co2-ppm-total.e6f2fa40.csv"
   },
   {
-    "revision": "f5bc93cc0c02fd093b0071f13b14d9e9",
-    "url": "/climate-change-storyboard/static/media/hero-background.f5bc93cc.png"
+    "revision": "7a385c5554bce0150628b6c77fc5f86d",
+    "url": "/climate-change-storyboard/static/media/hero-background.7a385c55.jpg"
   },
   {
-    "revision": "32744e840bb5d6809f208a8271d3c624",
+    "revision": "37fc10c7e9ede8c25d7a227d8465d7cc",
     "url": "/climate-change-storyboard/index.html"
   }
 ];
