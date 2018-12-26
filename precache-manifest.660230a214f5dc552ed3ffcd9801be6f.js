@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/climate-change-storyboard/static/media/co2-by-country-2000-2014.5cb5bbd6.csv"
   },
   {
-    "revision": "1abe9d3562eee72fca95",
-    "url": "/climate-change-storyboard/static/css/main.ce63c151.chunk.css"
+    "revision": "66639e763af3f1613a83",
+    "url": "/climate-change-storyboard/static/css/main.9284fb17.chunk.css"
   },
   {
     "revision": "54d6022a949f9f96a89a",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/climate-change-storyboard/static/media/population-by-country-2000-2014.88f1cef7.csv"
   },
   {
-    "revision": "1abe9d3562eee72fca95",
-    "url": "/climate-change-storyboard/static/js/main.1abe9d35.chunk.js"
+    "revision": "66639e763af3f1613a83",
+    "url": "/climate-change-storyboard/static/js/main.66639e76.chunk.js"
   },
   {
     "revision": "a1597ea9267b9dc5b29998c9d47e3095",
@@ -44,7 +44,7 @@ self.__precacheManifest = [
     "url": "/climate-change-storyboard/static/media/hero-background.7a385c55.jpg"
   },
   {
-    "revision": "fc4ba2da4cf373f8afc334252e6c3357",
+    "revision": "2dd72d4dd09493732f9c5457cfbdade7",
     "url": "/climate-change-storyboard/index.html"
   }
 ];
