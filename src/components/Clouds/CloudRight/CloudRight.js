@@ -13,6 +13,7 @@ const CloudRight = () => {
     >
       <img 
         className='inline-image-right'
+        alt='Cloud with a transparent background scrolling over main content header'
         src='https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Cloud-PNG/Cloud_Clip_Art_PNG_Image.png?m=1507172105' 
       />
     </Parallax>

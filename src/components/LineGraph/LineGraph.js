@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import * as d3 from 'd3';
 import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, Hint } from 'react-vis';
-import { Button } from 'reactstrap';
 
 // Internal imports
 import co2DataTotal from '../../data/LineGraph/co2-ppm-total.csv';
@@ -31,8 +30,6 @@ class LineGraph extends Component {
   }
 
   render() {
-    const { segmentIndex } = this.state;
-
     return (
       <div className='line-graph-backgound'>
         <div className='line-graph-container'>
