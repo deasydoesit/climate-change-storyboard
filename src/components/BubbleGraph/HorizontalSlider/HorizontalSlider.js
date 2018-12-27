@@ -20,7 +20,7 @@ class HorizontalSlider extends Component {
         <span 
           className={`slider-hint ${this.props.hasSlid ? 'hide-slider-hint' : ''}`}
         >
-          Slide to udpate graph
+          Slide to update graph
         </span>
       </div>
     )

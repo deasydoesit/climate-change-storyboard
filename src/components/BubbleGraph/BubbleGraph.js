@@ -114,7 +114,7 @@ class BubbleGraph extends Component {
           {/* Bubble graph header */}
           <div className="plot-wrapper">
             <div className='bubble-graph-title'>
-              Greenhouse Gas Emissions by Country in {this.state.year}
+              Greenhouse Gas Emissions by Country in <span className='underline-year'>{this.state.year}</span>
             </div>
             <HorizontalSlider 
               updateBubbleGraph={this.updateBubbleGraph}

@@ -175,7 +175,7 @@ class Choropleth extends Component {
         {/* Choropleth header */}
         <div className='choropleth-header'>
           <div className='choropleth-title'>
-            Temperature by US County in {years[index]}
+            US County Average Yearly Temperatures in <span className='underline-year'>{years[index]}</span>
           </div>
           <ControlButtons 
             isOn={isOn}

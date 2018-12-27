@@ -93,6 +93,10 @@
   font-size: 12px
 }
 
+.underline-year {
+  text-decoration: underline;
+}
+
 @media only screen and (min-width: 1550px) {
   .rv-xy-plot {
     margin: 0 60% 0 5%;

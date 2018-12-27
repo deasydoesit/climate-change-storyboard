@@ -48,8 +48,21 @@ path {
   stroke-width: .1px;
 }
 
+.underline-year {
+  text-decoration: underline;
+}
+
 @media only screen and (max-width: 1441px) {
   .choropleth-section-container {
     height: 125vh !important;
+  }
+
+  .choropleth-buttons {
+    padding-top: 1rem !important;
+    padding-bottom: 0 !important;
+  }
+
+  .choropleth-data-attribute {
+    padding-top: 0 !important;
   }
 }
