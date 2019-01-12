@@ -1,7 +1,7 @@
 // External imports
 import React, { Component } from 'react';
 import * as d3 from 'd3';
-import { FlexibleXYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, Hint } from 'react-vis';
+import { XYPlot, XAxis, YAxis, HorizontalGridLines, VerticalGridLines, LineSeries, Hint } from 'react-vis';
 
 // Internal imports
 import co2DataTotal from '../../data/LineGraph/co2-ppm-total.csv';
@@ -41,9 +41,11 @@ class LineGraph extends Component {
           </h1>
 
           {/* Line Graph */}
-          <FlexibleXYPlot 
+          <XYPlot 
             animate={true}
             className='line-graph-plot'
+            width={700} 
+            height={400}
             onMouseLeave={() => this.setState({value: false})}
             yDomain={ [270, 400] }
           >
@@ -64,7 +66,7 @@ class LineGraph extends Component {
               onNearestX={d => this.setState({value: d})}
             />
             {this.state.value && <Hint value={this.state.value} />}
-          </FlexibleXYPlot>
+          </XYPlot>
           <span className='line-graph-data-attribute'>
             Data from the Institute for Atmospheric and Climate Science (IAC) at Eidgenössische Technische Hochschule in Zürich, Switzerland
           </span>

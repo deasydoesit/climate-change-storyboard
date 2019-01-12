@@ -43,8 +43,7 @@
 }
 
 .plot-wrapper {
-  width: 75vw;
-  height: 80vh;
+  width: 75%;
   margin: 0 auto;
   background-color: ghostwhite;
   opacity: 0.96;
